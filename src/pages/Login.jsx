@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
-  const [email, setEmail] = useState("jack@example.com");
+  const [email, setEmail] = useState("raj@example.com");
   const [password, setPassword] = useState("qwerty");
 
   const { login, isAuthenticated } = useAuth();

@@ -1,112 +1,28 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": 73930385
-    },
-    {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
+      "cityName": "Bhuj",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2025-02-15T11:53:36.102Z",
       "notes": "",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
+        "lat": "23.221371834981767",
+        "lng": "69.66979980468751"
       },
-      "id": 17806751
+      "id": 1
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": 98443197
-    },
-    {
-      "cityName": "Nijar",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-04-03T07:47:59.202Z",
+      "cityName": "Udaipur",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2025-02-15T11:53:56.865Z",
       "notes": "",
       "position": {
-        "lat": "36.967508314568164",
-        "lng": "-2.13128394200588"
+        "lat": "24.55776158230253",
+        "lng": "73.69628906250001"
       },
-      "id": 98443198
-    },
-    {
-      "cityName": "Gurrea de Gallego",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-08-24T03:15:53.571Z",
-      "notes": "",
-      "position": {
-        "lat": "42.08368265275769",
-        "lng": "-0.7266333561240068"
-      },
-      "id": 98443199
-    },
-    {
-      "cityName": "Cuenca",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-08-24T03:16:06.463Z",
-      "notes": "",
-      "position": {
-        "lat": "40.41806765131337",
-        "lng": "-1.9127433359656167"
-      },
-      "id": 98443200
-    },
-    {
-      "cityName": "Morella",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-08-24T03:20:22.754Z",
-      "notes": "",
-      "position": {
-        "lat": "40.60016860399769",
-        "lng": "-0.1339032257919315"
-      },
-      "id": 98443201
-    },
-    {
-      "cityName": "Balsa de Ves",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-08-24T03:23:03.240Z",
-      "notes": "",
-      "position": {
-        "lat": "39.2532157354868",
-        "lng": "-1.1876456797156165"
-      },
-      "id": 98443202
-    },
-    {
-      "cityName": "Pedro Munoz",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-08-24T03:23:11.991Z",
-      "notes": "",
-      "position": {
-        "lat": "39.35461209319327",
-        "lng": "-2.9229933119675366"
-      },
-      "id": 98443203
+      "id": 2
     }
   ]
 }
