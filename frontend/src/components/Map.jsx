@@ -7,17 +7,16 @@ import {
   useMap,
   useMapEvents,
 } from "react-leaflet";
+import { useEffect, useState } from "react";
 import styles from "./Map.module.css";
 
-import { useEffect, useState } from "react";
 import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/useGeolocation";
-import Button from "./Button";
 import { useUrlPosition } from "../hooks/useUrlPosition";
+import Button from "./Button";
 
 function Map() {
   const { cities } = useCities();
-
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
   const {
@@ -28,20 +27,17 @@ function Map() {
 
   const [mapLat, mapLng] = useUrlPosition();
 
-  useEffect(
-    function () {
-      if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
-    },
-    [mapLat, mapLng]
-  );
+  // Set position from URL
+  useEffect(() => {
+    if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
+  }, [mapLat, mapLng]);
 
-  useEffect(
-    function () {
-      if (geolocationPosition)
-        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
-    },
-    [geolocationPosition]
-  );
+  // Set position from geolocation
+  useEffect(() => {
+    if (geolocationPosition)
+      setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+  }, [geolocationPosition]);
+
   return (
     <div className={styles.mapContainer}>
       {!geolocationPosition && (
@@ -49,6 +45,7 @@ function Map() {
           {isLoadingPosition ? "Loading..." : "Use Your Position"}
         </Button>
       )}
+
       <MapContainer
         center={mapPosition}
         zoom={6}
@@ -60,20 +57,33 @@ function Map() {
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
 
-        {cities.map((city) => (
-          <Marker
-            position={[city.position.lat, city.position.lng]}
-            key={city.id}
-          >
-            <Popup>
-              <span>{city.emoji}</span>
-              <span>{city.cityName}</span>
-            </Popup>
-          </Marker>
-        ))}
+        {Array.isArray(cities) &&
+          cities.map((city) => {
+            // 💥 Defensive check to avoid crash if position is undefined
+            if (
+              !city ||
+              !city.position ||
+              typeof city.position.lat !== "number" ||
+              typeof city.position.lng !== "number"
+            ) {
+              console.warn("Skipping invalid city:", city);
+              return null;
+            }
+
+            return (
+              <Marker
+                position={[city.position.lat, city.position.lng]}
+                key={city._id || `${city.cityName}-${Math.random()}`}
+              >
+                <Popup>
+                  <span>{city.emoji}</span> <strong>{city.cityName}</strong>
+                </Popup>
+              </Marker>
+            );
+          })}
 
         <ChangeCenter position={mapPosition} />
-        <DeteteClick />
+        <DetectClick />
       </MapContainer>
     </div>
   );
@@ -81,18 +91,20 @@ function Map() {
 
 function ChangeCenter({ position }) {
   const map = useMap();
-  map.setView(position);
+  useEffect(() => {
+    map.setView(position);
+  }, [position, map]);
   return null;
 }
 
-function DeteteClick() {
+function DetectClick() {
   const navigate = useNavigate();
   useMapEvents({
     click: (e) => {
-      console.log(e);
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
+  return null;
 }
 
 export default Map;

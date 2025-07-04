@@ -15,16 +15,31 @@ const formatDate = (date) =>
 
 function City() {
   const { id } = useParams();
-  const { getCity, currentCity, isLoading } = useCities();
+  const { getCity, currentCity, isLoading, error } = useCities();
 
-  useEffect(
-    function () {
-      getCity(id);
-    },
-    [id, getCity]
-  );
+  useEffect(() => {
+    if (!id) return;
+    console.log("Fetching city with id:", id);
+    getCity(id);
+  }, [id, getCity]); // ✅ Only depends on ID
 
   if (isLoading) return <Spinner />;
+
+  if (error)
+    return (
+      <div className={styles.city}>
+        <p style={{ color: "red" }}>{error}</p>
+        <BackButton />
+      </div>
+    );
+
+  if (!currentCity?.cityName)
+    return (
+      <div className={styles.city}>
+        <p>City not found.</p>
+        <BackButton />
+      </div>
+    );
 
   const { cityName, emoji, date, notes } = currentCity;
 
