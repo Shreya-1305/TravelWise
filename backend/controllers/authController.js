@@ -91,6 +91,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
 // restrictTo Middleware
 exports.restrictTo = (...roles) => {
+  roles[("admin", "owner")];
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(new AppError("You are not allowed to do this", 403));
